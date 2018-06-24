@@ -1,0 +1,373 @@
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="./assets/css/style.css">
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+	<div class="demo">
+		<span class="demo-item_inner">ENTER MOVIE TITLE OR IMDb-ID</span>
+		</span>
+	</div>
+
+
+	<div class="containerlist">
+		<div class="center listmov">
+			MOVIES AVAILABLE :
+			<li id="oneT" class="textme"></li>
+
+		</div>
+	</div>
+
+
+
+
+	<form onsubmit="submitFn(this, event);">
+
+		<div class="search-wrapper ">
+
+			<div class="input-holder ">
+				<input type="text" class="search-input" placeholder="Type to search" />
+				<button class="search-icon" onclick="searchToggle(this, event);">
+					<span></span>
+				</button>
+			</div>
+			<span class="close" onclick="searchToggle(this, event);"></span>
+			<div class="result-container">
+
+			</div>
+		</div>
+	</form>
+
+
+
+	<div class="container mt-3">
+
+		<!-- Button to Open the Modal -->
+		<button type="button" class="btn btn-primary opener" data-toggle="modal" data-target="#myModal" id="callme" hidden>
+			Open modal
+		</button>
+
+		<!-- The Modal -->
+		<div class="modal fade" id="myModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 id="movietitle"></h4>
+
+					</div>
+
+					<!-- Modal body -->
+					<div class="modal-body">
+						<div class="imgcontainer">
+
+							<img class="pulse" id="poster">
+						</div>
+
+					</div>
+
+
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-12 col-md-12">
+								<div class="panel-group" id="accordion">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<div data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="accordion-toggle textcol">
+													RELEASED ON</div>
+											</h4>
+
+										</div>
+										<div id="collapseOne" class="panel-collapse collapse in">
+											<div class="panel-body">
+												<table class="table">
+													<tr>
+														<td class="textcol">
+															DATE :
+															<span class="glyphicon glyphicon-pencil text-primary" id="date"></span>
+														</td>
+													</tr>
+													<tr>
+														<td class="textcol">
+															RUNTIME :
+															<span class="glyphicon glyphicon-pencil text-primary" id="run"></span>
+														</td>
+													</tr>
+
+
+												</table>
+											</div>
+										</div>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<div data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed textcol">
+													<span class="glyphicon glyphicon-th">
+													</span>RATING</div>
+											</h4>
+										</div>
+										<div id="collapseTwo" class="panel-collapse collapse">
+											<div class="panel-body">
+												<table class="table">
+													<tr>
+														<td class="textcol">
+															IMDb :
+															<span class="glyphicon glyphicon-pencil text-primary" id="rate"></span>
+														</td>
+
+													</tr>
+													<tr>
+														<td class="textcol">
+															IMDb-ID :
+															<span class="glyphicon glyphicon-pencil text-primary" id="imdbid"></span>
+														</td>
+													</tr>
+													<tr>
+														<td class="textcol">
+															RATED :
+															<span class="glyphicon glyphicon-pencil text-primary" id="rated"></span>
+														</td>
+													</tr>
+													<tr>
+														<td class="textcol">
+															OTHERS :
+															<br>
+															<div class="col-sm-12 col-md-12 col-xs-12"> 1.
+																<span class="glyphicon glyphicon-pencil text-primary" id="source"></span> :
+																<span class="glyphicon glyphicon-pencil text-primary" id="value"></span>
+																<br>
+															</div>
+															<div class="col-sm-8 col-md-12">2.
+																<span class="glyphicon glyphicon-pencil text-primary" id="source1"></span> :
+																<span class="glyphicon glyphicon-pencil text-primary" id="value1"></span>
+																<br>
+															</div>
+															<div class="col-sm-12 col-md-12">3.
+																<span class="glyphicon glyphicon-pencil text-primary" id="source2"></span> :
+																<span class="glyphicon glyphicon-pencil text-primary" id="value2"></span>
+																<br>
+															</div>
+
+
+														</td>
+													</tr>
+
+												</table>
+											</div>
+										</div>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<div data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="textcol">
+													<span class="glyphicon glyphicon-user">
+													</span>PRODUCED BY</div>
+											</h4>
+										</div>
+										<div id="collapseThree" class="panel-collapse collapse">
+											<div class="panel-body">
+												<table class="table">
+													<tr>
+														<td class="textcol">
+															PRODUCTION :
+															<span class="glyphicon glyphicon-pencil text-primary" id="prod"></span>
+														</td>
+													</tr>
+													<tr>
+														<td class="textcol">
+															DIRECTOR :
+															<span class="glyphicon glyphicon-pencil text-primary" id="direct"></span>
+														</td>
+													</tr>
+													<tr>
+														<td class="textcol">
+															COUNTRY :
+															<span class="glyphicon glyphicon-pencil text-primary" id="county"></span>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</div>
+
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<div data-toggle="collapse" data-parent="#accordion" href="#collapseFour" class="textcol">
+													<span class="glyphicon glyphicon-file">
+													</span>REPORTS</div>
+											</h4>
+										</div>
+										<div id="collapseFour" class="panel-collapse collapse">
+											<div class="panel-body">
+												<table class="table">
+													<tr>
+														<td class="textcol">
+															Box Office Collection:
+															<span class="text-primary" id="collect"></span>
+														</td>
+													</tr>
+													<tr>
+														<td class="textcol">
+															IMDb Votes:
+															<span class="text-primary" id="vote"></span>
+														</td>
+													</tr>
+													<tr>
+														<td class="textcol">
+															AWARDS:
+															<br>
+															<br>
+															<span class="text-primary" id="award"></span>
+														</td>
+													</tr>
+
+												</table>
+											</div>
+										</div>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<div data-toggle="collapse" data-parent="#accordion" href="#collapseFive" class="textcol">
+													<span class="glyphicon glyphicon-file">
+													</span>STAR CAST</div>
+											</h4>
+										</div>
+										<div id="collapseFive" class="panel-collapse collapse">
+											<div class="panel-body">
+												<table class="table">
+													<tr>
+														<td class="textcol">
+															Actors:
+															<span class="text-primary" id="star"></span>
+														</td>
+													</tr>
+
+												</table>
+											</div>
+										</div>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<div data-toggle="collapse" data-parent="#accordion" href="#collapseSix" class="textcol">
+													<span class="glyphicon glyphicon-file">
+													</span>MORE</div>
+											</h4>
+										</div>
+										<div id="collapseSix" class="panel-collapse collapse">
+											<div class="panel-body">
+												<table class="table">
+													<tr>
+														<td class="textcol">
+															Genre :
+															<span class="text-primary" id="genr"></span>
+														</td>
+													</tr>
+													<tr>
+														<td class="textcol">
+															Language :
+															<span class="text-primary" id="lang"></span>
+														</td>
+													</tr>
+													<tr>
+														<td class="textcol">
+															PLOT:
+															<span class="text-primary" id="plot"></span>
+
+
+
+														</td>
+													</tr>
+													<tr>
+														<td class="textcol">
+															OFFICIAL WEBSITE:
+															<span class="text-primary" id="web"></span>
+
+
+
+														</td>
+													</tr>
+
+												</table>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+
+					<!-- Modal footer -->
+					<div class="modal-footer">
+
+						<div class="col-sm-6 col-md-6">
+							<button type="button" class="btn btn-primary" id="more">
+								<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+								LIKE &nbsp;
+								<input class="qty1" name="qty1" readonly="readonly" type="text" value="0" />
+							</button>
+
+						</div>
+						<div class="col-sm-6 col-md-6">
+							<button type="button" class="btn btn-danger" data-dismiss="modal" id="close">Close</button>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	</div>
+
+
+
+
+
+
+
+
+</body>
+
+<!-- External Scripts -->
+
+
+<script type="text/javascript" src="js/index.js"></script>
+
+
+
+</html>
